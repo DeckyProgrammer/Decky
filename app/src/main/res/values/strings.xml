@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Test</string>
+    <string name="button_1_fr">Cliquez pour lancer une nouvelle partie !</string>
+</resources>

@@ -8,8 +8,8 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="630dp"
-        android:layout_height="475dp"
+        android:layout_width="357dp"
+        android:layout_height="346dp"
         android:text="@string/button_1_fr"
         android:textSize="50sp"
         android:visibility="visible"
@@ -17,28 +17,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.876"
+        app:layout_constraintVertical_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.5"
         tools:visibility="visible" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="714dp"
-        android:layout_height="122dp"
+        android:layout_width="355dp"
+        android:layout_height="92dp"
         android:text="Pour démarrer une nouvelle partie il faut être connecté en Bluetooth."
-        android:textSize="40sp"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.8" />
+        app:layout_constraintVertical_bias="0.84000003" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DECKY"
-        android:textSize="100sp"
+        android:textSize="80sp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

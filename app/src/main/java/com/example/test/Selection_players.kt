@@ -12,7 +12,7 @@ class Selection_players : AppCompatActivity() {
 
         val button2p = findViewById<Button>(R.id.button_2p)
         button2p.setOnClickListener {
-            val intent = Intent(this, players2::class.java)
+            val intent = Intent(this, noms2::class.java)
             startActivity(intent)
         }
 /*
@@ -42,4 +42,4 @@ class Selection_players : AppCompatActivity() {
 
         */
     }
-    }
+}

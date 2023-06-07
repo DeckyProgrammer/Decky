@@ -15,6 +15,8 @@ class Selection_players : AppCompatActivity() {
             val intent = Intent(this, noms2::class.java)
             startActivity(intent)
         }
+
+
 /*
         val button3p = findViewById<Button>(R.id.button_3p)
         button3p.setOnClickListener {

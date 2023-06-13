@@ -73,7 +73,7 @@
         android:layout_width="804dp"
         android:layout_height="109dp"
         android:layout_marginTop="264dp"
-        android:text="PASSER SON TOUR "
+        android:text="BOUGER LES CARTES "
         app:layout_constraintBottom_toTopOf="@+id/button_play"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

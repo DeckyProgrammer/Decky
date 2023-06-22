@@ -5,10 +5,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 
-class noms4 : AppCompatActivity() {
+class noms6 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_noms4)
+        setContentView(R.layout.activity_noms6)
 
         val button = findViewById<Button>(R.id.button_valider)
         button.setOnClickListener {

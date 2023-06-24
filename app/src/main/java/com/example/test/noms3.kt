@@ -14,5 +14,6 @@ class noms3 : AppCompatActivity() {
         button.setOnClickListener {
             val intent = Intent(this, Gameplay::class.java)
             startActivity(intent)
+        }
     }
 }

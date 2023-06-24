@@ -27,19 +27,19 @@ class Selection_players : AppCompatActivity() {
             val intent = Intent(this, noms4::class.java)
             startActivity(intent)
         }
-/*
+
         val button5p = findViewById<Button>(R.id.button_5p)
         button5p.setOnClickListener {
-            val intent = Intent(this, players5::class.java)
+            val intent = Intent(this, noms5::class.java)
             startActivity(intent)
         }
 
         val button6p = findViewById<Button>(R.id.button_6p)
         button6p.setOnClickListener {
-            val intent = Intent(this, players6::class.java)
+            val intent = Intent(this, noms6::class.java)
             startActivity(intent)
         }
 
-        */
+
     }
 }

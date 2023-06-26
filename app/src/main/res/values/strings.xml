@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Test</string>
+    <string name="app_name">Decky</string>
     <string name="button_1_fr">NOUVELLE PARTIE</string>
     <string name="title_activity_annoncetour">Annoncetour</string>
     <!-- Strings used for fragments for navigation -->

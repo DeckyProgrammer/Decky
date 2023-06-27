@@ -8,10 +8,10 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="357dp"
-        android:layout_height="346dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/button_1_fr"
-        android:textSize="50sp"
+        android:textSize="50dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DECKY"
-        android:textSize="80sp"
+        android:textSize="70dp"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

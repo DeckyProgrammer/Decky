@@ -6,5 +6,5 @@ fun main(){
 }
 
 fun display(card : String, n_displayed : Int) : Unit {
-    "app/src/main/res/drawable/_10_of_clubs.png"
+    "app/src/main/res/drawable/s1.png"
 }

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
 
     <application
         android:allowBackup="true"
@@ -26,11 +29,7 @@
         <activity
             android:name=".annoncetour"
             android:exported="false" />
-        <activity
-            android:name=".Annoncetour"
-            android:exported="false"
-            android:label="@string/title_activity_annoncetour"
-            android:theme="@style/Theme.Test.NoActionBar" />
+
         <activity
             android:name=".Gameplay"
             android:exported="false" />

@@ -1,11 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Test" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.Test" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/bleu_fonce</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
         <item name="colorAccent">@color/teal_200</item>
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Autres attributs de style -->
+        <item name="android:statusBarColor">@color/bleu_fonce</item>
     </style>
 
     <style name="Theme.Test.NoActionBar">

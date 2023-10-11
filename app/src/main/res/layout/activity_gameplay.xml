@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Mes cartes :"
         android:textColor="@color/bleu_clair"
+        android:fontFamily="@font/baloo"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:text="Tour de enfant 1"
         android:textColor="@color/bleu_clair"
+        android:fontFamily="@font/baloo"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +43,7 @@
         android:layout_height="109dp"
         android:text="PIOCHER UNE CARTE"
         android:textColor="@color/bleu_fonce"
+        android:fontFamily="@font/baloo"
         android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_play"
@@ -54,6 +57,7 @@
         android:layout_width="115dp"
         android:layout_height="109dp"
         android:text="JOUER LA CARTE"
+        android:fontFamily="@font/baloo"
         android:textColor="@color/bleu_fonce"
         android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,6 +72,7 @@
         android:layout_width="115dp"
         android:layout_height="109dp"
         android:text="PASSER SON TOUR "
+        android:fontFamily="@font/baloo"
         android:textColor="@color/bleu_fonce"
         android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,11 +84,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="104dp"
-        android:layout_height="135dp"
+        android:layout_width="149dp"
+        android:layout_height="169dp"
         app:srcCompat="@drawable/c1"
-        tools:layout_editor_absoluteX="71dp"
-        tools:layout_editor_absoluteY="109dp" />
+        tools:layout_editor_absoluteX="37dp"
+        tools:layout_editor_absoluteY="101dp" />
 
 </android.support.constraint.ConstraintLayout>
 

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bleu_fonce"
     tools:context=".annoncetour">
 
 
@@ -12,25 +13,51 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TOUR DE :"
+        android:fontFamily="@font/baloo"
         android:textSize="35sp"
         android:textStyle="bold"
-        android:textColor="#333333"
+        android:textColor="@color/bleu_clair"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/playerNameTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:id="@+id/titleTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/baloo"
+        android:text="Tes cartes sont :"
+        android:textColor="@color/bleu_clair"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playerNameTextView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
         android:id="@+id/playerNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Nom du joueur"
+        android:textColor="#FF0000"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:textColor="#FF0000"
-        app:layout_constraintTop_toBottomOf="@+id/titleTextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="129dp"
+        android:layout_height="189dp"
+        app:srcCompat="@drawable/c1"
+        tools:layout_editor_absoluteX="35dp"
+        tools:layout_editor_absoluteY="247dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/bleu_fonce"
     android:layout_height="match_parent">
 
     <TextView
@@ -10,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Mes cartes :"
+        android:textColor="@color/bleu_clair"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,6 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Tour de enfant 1"
+        android:textColor="@color/bleu_clair"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,6 +40,8 @@
         android:layout_width="115dp"
         android:layout_height="109dp"
         android:text="PIOCHER UNE CARTE"
+        android:textColor="@color/bleu_fonce"
+        android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/button_play"
         app:layout_constraintHorizontal_bias="0.5"
@@ -49,6 +54,8 @@
         android:layout_width="115dp"
         android:layout_height="109dp"
         android:text="JOUER LA CARTE"
+        android:textColor="@color/bleu_fonce"
+        android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -61,6 +68,8 @@
         android:layout_width="115dp"
         android:layout_height="109dp"
         android:text="PASSER SON TOUR "
+        android:textColor="@color/bleu_fonce"
+        android:background="@drawable/arrondir"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -70,11 +79,11 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="200dp"
-        android:layout_height="290dp"
+        android:layout_width="104dp"
+        android:layout_height="135dp"
         app:srcCompat="@drawable/c1"
-        tools:layout_editor_absoluteX="62dp"
-        tools:layout_editor_absoluteY="142dp" />
+        tools:layout_editor_absoluteX="71dp"
+        tools:layout_editor_absoluteY="109dp" />
 
 </android.support.constraint.ConstraintLayout>
 

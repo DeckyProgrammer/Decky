@@ -54,10 +54,18 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="129dp"
-        android:layout_height="189dp"
+        android:layout_width="100dp"
+        android:layout_height="128dp"
         app:srcCompat="@drawable/c1"
-        tools:layout_editor_absoluteX="35dp"
-        tools:layout_editor_absoluteY="247dp" />
+        tools:layout_editor_absoluteX="32dp"
+        tools:layout_editor_absoluteY="283dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="103dp"
+        android:layout_height="131dp"
+        app:srcCompat="@drawable/s12"
+        tools:layout_editor_absoluteX="164dp"
+        tools:layout_editor_absoluteY="283dp" />
 
 </android.support.constraint.ConstraintLayout>

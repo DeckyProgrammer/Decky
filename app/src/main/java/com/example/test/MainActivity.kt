@@ -15,6 +15,8 @@ import android.widget.Button
 import android.widget.ImageButton
 
 class MainActivity : AppCompatActivity() {
+
+    private val REQUEST_BLUETOOTH_PERMISSION = 1
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -32,8 +34,23 @@ class MainActivity : AppCompatActivity() {
             //overridePendingTransition(R.anim.rotate_in,R.anim.rotate_out);
         }
         buttonBluetooth.setOnClickListener {
-            val intentBluetoothAdapter = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivity(intentBluetoothAdapter)
+            // Vérifier si l'application a l'autorisation BLUETOOTH_CONNECT
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.BLUETOOTH_CONNECT
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                // Si l'autorisation n'est pas accordée, demander la permission à l'utilisateur
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.BLUETOOTH_CONNECT),
+                    REQUEST_BLUETOOTH_PERMISSION
+                )
+            } else {
+                // Si l'autorisation est accordée, activer le Bluetooth
+                val intentBluetoothAdapter = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+                startActivity(intentBluetoothAdapter)
+            }
         }
     }
 }

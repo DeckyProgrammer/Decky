@@ -58,12 +58,15 @@ class Gameplay : AppCompatActivity() {
             }
         }) */
 
-          fun setupImageViewDrag(imageView: ImageView) {
+          /* fun setupImageViewDrag(imageView: ImageView) {
             imageView.setOnTouchListener(object : View.OnTouchListener {
                 var dX = 0f
                 var dY = 0f
                 var maxX = 0f
                 var maxY = 0f
+                //val minAllowedY = 170f
+                //val maxAllowedY = 0.85f
+
 
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     val screenWidth = resources.displayMetrics.widthPixels
@@ -88,10 +91,11 @@ class Gameplay : AppCompatActivity() {
                                 newX = maxX
                             }
 
-                            if (newY < 0) {
-                                newY = 0f
-                            } else if (newY > maxY) {
-                                newY = maxY
+
+                            if (newY < 200f) {
+                                newY = 200f
+                            } else if (newY > maxY - 350f) {
+                                newY = maxY - 350f
                             }
                             v.x = newX
                             v.y = newY
@@ -105,25 +109,22 @@ class Gameplay : AppCompatActivity() {
 // Appliquez la fonction aux ImageView
         setupImageViewDrag(myImage1)
         setupImageViewDrag(myImage2)
-        setupImageViewDrag(myImage3)
-/*
-        val imageViews = arrayOf(myImage1, myImage2,myImage3)
+        setupImageViewDrag(myImage3) */
 
-        var selectedImageView: ImageView? = null
+        val imageViews = arrayOf(myImage1, myImage2)
 
         for (imageView in imageViews) {
             imageView.setOnClickListener {
-                if (selectedImageView != null) {
-                    // Désélectionnez l'ImageView précédemment sélectionnée
-                    selectedImageView!!.isSelected = false
-                    selectedImageView!!.background.clearColorFilter()
+                imageView.isSelected = !imageView.isSelected
+                // Changez la couleur de la bordure en fonction de l'état de sélection si nécessaire
+                if (imageView.isSelected) {
+                    imageView.background = resources.getDrawable(R.drawable.border_orange, null)
+                } else {
+                    imageView.background = resources.getDrawable(R.drawable, null)
                 }
-
-                imageView.isSelected = true
-                imageView.background.setColorFilter(resources.getColor(R.color.orange), PorterDuff.Mode.SRC_ATOP)
-                selectedImageView = imageView
             }
-        } */
+        }
+
 
         val buttonpass = findViewById<Button>(R.id.button_pass)
         buttonpass.setOnClickListener {

@@ -13,7 +13,7 @@
         android:fontFamily="@font/baloo"
         android:text="Mes cartes :"
         android:textColor="@color/bleu_clair"
-        android:textSize="20sp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.04000002" />
 
-    <TextView
+   <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/c1"
         tools:layout_editor_absoluteY="121dp" />
-<!--
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="149dp"
@@ -105,7 +105,7 @@
         android:layout_height="169dp"
         app:srcCompat="@drawable/c3"
         tools:layout_editor_absoluteX="114dp"
-        tools:layout_editor_absoluteY="351dp" /> -->
+        tools:layout_editor_absoluteY="351dp" />
 
 </android.support.constraint.ConstraintLayout>
 

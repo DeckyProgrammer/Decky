@@ -19,8 +19,7 @@ class Gameplay : AppCompatActivity() {
         val myImage2 = findViewById<ImageView>(R.id.imageView2)
         val myImage3 = findViewById<ImageView>(R.id.imageView3)
 
-
-        myImage1.setOnTouchListener(object : OnTouchListener {
+        /* myImage1.setOnTouchListener(object : OnTouchListener {
             var dX = 0f
             var dY = 0f
             var maxX = 0f
@@ -57,14 +56,14 @@ class Gameplay : AppCompatActivity() {
                 }
                 return true
             }
-        })
+        }) */
 
-         /* fun setupImageViewDrag(imageView: ImageView) {
+          fun setupImageViewDrag(imageView: ImageView) {
             imageView.setOnTouchListener(object : View.OnTouchListener {
-                var dX: Float = 0f
-                var dY: Float = 0f
-                var maxX: Float = 0f
-                var maxY: Float = 0f
+                var dX = 0f
+                var dY = 0f
+                var maxX = 0f
+                var maxY = 0f
 
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     val screenWidth = resources.displayMetrics.widthPixels
@@ -76,24 +75,26 @@ class Gameplay : AppCompatActivity() {
                             dY = v.y - event.rawY
                         }
                         MotionEvent.ACTION_MOVE -> {
-                            val newX = event.rawX + dX
-                            val newY = event.rawY + dY
+                            var newX = event.rawX + dX
+                            var newY = event.rawY + dY
 
                             // Assurez-vous que l'ImageView ne dépasse pas les limites de l'écran
-                            maxX = screenWidth.toFloat() - v.width
-                            maxY = screenHeight.toFloat() - v.height
+                            maxX = (screenWidth - v.width).toFloat()
+                            maxY = (screenHeight - v.height).toFloat()
 
                             if (newX < 0) {
-                                v.x = 0f
+                                newX = 0f
                             } else if (newX > maxX) {
-                                v.x = maxX
+                                newX = maxX
                             }
 
                             if (newY < 0) {
-                                v.y = 0f
+                                newY = 0f
                             } else if (newY > maxY) {
-                                v.y = maxY
+                                newY = maxY
                             }
+                            v.x = newX
+                            v.y = newY
                         }
                     }
                     return true
@@ -104,7 +105,7 @@ class Gameplay : AppCompatActivity() {
 // Appliquez la fonction aux ImageView
         setupImageViewDrag(myImage1)
         setupImageViewDrag(myImage2)
-        setupImageViewDrag(myImage3) */
+        setupImageViewDrag(myImage3)
 /*
         val imageViews = arrayOf(myImage1, myImage2,myImage3)
 

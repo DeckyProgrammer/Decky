@@ -2,7 +2,9 @@ package com.example.test
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import android.view.View
@@ -11,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageView
 
 class Gameplay : AppCompatActivity() {
+    @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +21,8 @@ class Gameplay : AppCompatActivity() {
         val myImage1 = findViewById<ImageView>(R.id.imageView1)
         val myImage2 = findViewById<ImageView>(R.id.imageView2)
         val myImage3 = findViewById<ImageView>(R.id.imageView3)
+        val imageViews = arrayOf(myImage1, myImage2, myImage3)
+        var selectedImageView: ImageView? = null
 
         /* myImage1.setOnTouchListener(object : OnTouchListener {
             var dX = 0f
@@ -58,7 +63,7 @@ class Gameplay : AppCompatActivity() {
             }
         }) */
 
-          /* fun setupImageViewDrag(imageView: ImageView) {
+          fun setupImageViewDrag(imageView: ImageView) {
             imageView.setOnTouchListener(object : View.OnTouchListener {
                 var dX = 0f
                 var dY = 0f
@@ -100,6 +105,25 @@ class Gameplay : AppCompatActivity() {
                             v.x = newX
                             v.y = newY
                         }
+                    MotionEvent.ACTION_UP -> {
+                    // Gérez la sélection ici (par exemple, basculez l'état de sélection)
+                        v.isSelected = !v.isSelected
+
+                    // Changez la couleur de la bordure en fonction de l'état de sélection si nécessaire
+                        if (v.isSelected) {
+                            v.foreground = resources.getDrawable(R.drawable.border_orange, null)
+                        } else {
+                            v.foreground = null
+                            selectedImageView = v
+                        }
+                        for (imageView in imageViews) {
+                            if (imageView != v) {
+                                imageView.isSelected = false
+                                imageView.foreground = null
+                            }
+                        }
+                        selectedImageView = v  
+                    }
                     }
                     return true
                 }
@@ -107,23 +131,26 @@ class Gameplay : AppCompatActivity() {
         }
 
 // Appliquez la fonction aux ImageView
-        setupImageViewDrag(myImage1)
-        setupImageViewDrag(myImage2)
-        setupImageViewDrag(myImage3) */
+    setupImageViewDrag(myImage1)
+    setupImageViewDrag(myImage2)
+    setupImageViewDrag(myImage3)
 
-        val imageViews = arrayOf(myImage1, myImage2)
+        /* val imageViews = arrayOf(myImage1, myImage2, myImage3)
 
         for (imageView in imageViews) {
-            imageView.setOnClickListener {
+            imageView.setOnLongClickListener {
                 imageView.isSelected = !imageView.isSelected
                 // Changez la couleur de la bordure en fonction de l'état de sélection si nécessaire
                 if (imageView.isSelected) {
-                    imageView.background = resources.getDrawable(R.drawable.border_orange, null)
+                    imageView.foreground = resources.getDrawable(R.drawable.border_orange, null)
                 } else {
-                    imageView.background = resources.getDrawable(R.drawable, null)
+                    imageView.foreground = null
                 }
+                true
             }
-        }
+        }          */
+
+
 
 
         val buttonpass = findViewById<Button>(R.id.button_pass)

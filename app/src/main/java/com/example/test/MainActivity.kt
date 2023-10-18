@@ -51,6 +51,11 @@ class MainActivity : AppCompatActivity() {
                 val intentBluetoothAdapter = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                 startActivity(intentBluetoothAdapter)
             }
+
         }
+            val buttonWifi = findViewById<ImageButton>(R.id.imageButton3)
+            buttonWifi.setOnClickListener{
+
+            }
     }
 }

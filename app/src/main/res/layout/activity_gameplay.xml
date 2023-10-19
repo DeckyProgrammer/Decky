@@ -83,7 +83,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.98" /> -->
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imageView2"
         android:layout_width="125dp"
         android:layout_height="181dp"
@@ -92,7 +92,7 @@
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/c2" />
+        app:srcCompat="@drawable/c2" /> -->
 
     <ImageView
         android:id="@+id/imageView1"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/c1" />
 
-    <ImageView
+    <!-- <ImageView
         android:id="@+id/imageView3"
         android:layout_width="125dp"
         android:layout_height="181dp"
@@ -114,7 +114,7 @@
         android:scaleType="fitXY"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/c3" />
+        app:srcCompat="@drawable/c3" /> -->
 
     <ImageView
         android:id="@+id/imageViewCarte"

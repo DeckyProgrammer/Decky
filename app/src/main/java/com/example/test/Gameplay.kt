@@ -25,9 +25,10 @@ class Gameplay : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gameplay)
         val myImage1 = findViewById<ImageView>(R.id.imageView1)
-        val myImage2 = findViewById<ImageView>(R.id.imageView2)
-        val myImage3 = findViewById<ImageView>(R.id.imageView3)
-        val imageViews = arrayListOf(myImage1, myImage2, myImage3)
+        /* val myImage2 = findViewById<ImageView>(R.id.imageView2)
+        val myImage3 = findViewById<ImageView>(R.id.imageView3) */
+        val imageViews = arrayListOf(myImage1)
+        val i = intent.getIntExtra("cle_i", 2)
         var selectedImageView: ImageView? = null
 
 
@@ -122,7 +123,7 @@ class Gameplay : AppCompatActivity() {
                 // Aucune image n'est sélectionnée
             }
         }
-        val i = intent.getIntExtra("cle_i", 2)
+
         val cartes: ArrayList<Int> = when (i) {
             0 -> arrayListOf(R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5,
                 R.drawable.c6, R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10,

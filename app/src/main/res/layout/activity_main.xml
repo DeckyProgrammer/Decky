@@ -30,7 +30,7 @@
         android:layout_width="354dp"
         android:layout_height="113dp"
         android:fontFamily="@font/baloo"
-        android:text="Pour démarrer une nouvelle partie il faut être connecté en Bluetooth."
+        android:text="Pour démarrer une nouvelle partie il faut être connecté en Wifi et en Bluetooth."
         android:textColor="@color/orange"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/button"

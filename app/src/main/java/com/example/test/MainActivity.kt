@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.button)
         val buttonBluetooth = findViewById<ImageButton>(R.id.imageButton2)
         button.setOnClickListener {
-            val intent = Intent(this, Selection_players::class.java)
+            val intent = Intent(this, noms2::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left); // Appliquer l'animation de translation vers la droite
             //overridePendingTransition(R.anim.rotate_in,R.anim.rotate_out);
@@ -51,6 +51,11 @@ class MainActivity : AppCompatActivity() {
                 val intentBluetoothAdapter = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
                 startActivity(intentBluetoothAdapter)
             }
+
         }
+            val buttonWifi = findViewById<ImageButton>(R.id.imageButton3)
+            buttonWifi.setOnClickListener{
+
+            }
     }
 }

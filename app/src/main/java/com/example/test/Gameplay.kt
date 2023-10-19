@@ -105,12 +105,12 @@ class Gameplay : AppCompatActivity() {
         }
 
 
-        val buttonpass = findViewById<Button>(R.id.button_pass)
+        /* val buttonpass = findViewById<Button>(R.id.button_pass)
         buttonpass.setOnClickListener {
             val intent = Intent(this, annoncetour::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
+        } */
 
         val parentLayout = findViewById<ConstraintLayout>(R.id.layout_gameplay)
         val buttonjoue = findViewById<Button>(R.id.button_play)
@@ -122,13 +122,9 @@ class Gameplay : AppCompatActivity() {
                 // Aucune image n'est sélectionnée
             }
         }
-
-
-
-        val buttonpioche = findViewById<Button>(R.id.button_draw)
-        buttonpioche.setOnClickListener {
-            val cartes = arrayOf(
-                R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5,
+        val i = intent.getIntExtra("cle_i", 2)
+        val cartes: ArrayList<Int> = when (i) {
+            0 -> arrayListOf(R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5,
                 R.drawable.c6, R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10,
                 R.drawable.c11, R.drawable.c12, R.drawable.c13,
 
@@ -145,11 +141,41 @@ class Gameplay : AppCompatActivity() {
                 R.drawable.s11, R.drawable.s12, R.drawable.s13,
                 R.drawable.j1, R.drawable.j2
             )
+            1 -> arrayListOf(
+                // Cartes bleues
+                R.drawable.blue_0, R.drawable.blue_1, R.drawable.blue_2, R.drawable.blue_3, R.drawable.blue_4,
+                R.drawable.blue_5, R.drawable.blue_6, R.drawable.blue_7, R.drawable.blue_8, R.drawable.blue_9,
+                R.drawable.blue_reverse, R.drawable.blue_skip, R.drawable.blue_take2,
 
+                // Cartes vertes
+                R.drawable.green_0, R.drawable.green_1, R.drawable.green_2, R.drawable.green_3, R.drawable.green_4,
+                R.drawable.green_5, R.drawable.green_6, R.drawable.green_7, R.drawable.green_8, R.drawable.green_9,
+                R.drawable.green_reverse, R.drawable.green_skip, R.drawable.green_take2,
+
+                // Cartes rouges
+                R.drawable.red_0, R.drawable.red_1, R.drawable.red_2, R.drawable.red_3, R.drawable.red_4,
+                R.drawable.red_5, R.drawable.red_6, R.drawable.red_7, R.drawable.red_8, R.drawable.red_9,
+                R.drawable.red_reverse, R.drawable.red_skip, R.drawable.red_take2,
+
+                // Cartes jaunes
+                R.drawable.yellow_0, R.drawable.yellow_1, R.drawable.yellow_2, R.drawable.yellow_3, R.drawable.yellow_4,
+                R.drawable.yellow_5, R.drawable.yellow_6, R.drawable.yellow_7, R.drawable.yellow_8, R.drawable.yellow_9,
+                R.drawable.yellow_reverse, R.drawable.yellow_skip, R.drawable.yellow_take2, R.drawable.change_colour1, R.drawable.take_four1
+                // Continuez avec d'autres types de cartes spéciales si nécessaire
+            )
+            else -> arrayListOf() // Liste par défaut si choixUtilisateur n'est ni 1 ni 2
+        }
+        if(i==2){val intent = Intent(this, noms5::class.java)
+                 startActivity(intent)
+                 overridePendingTransition(R.anim.slide_in_right,R.anim.slide_out_left);}
+
+        val buttonpioche = findViewById<Button>(R.id.button_draw)
+        buttonpioche.setOnClickListener {
+            val imageViewCarte = ImageView(this)
             val randomIndex = (0 until cartes.size).random()
             val carteRandom = cartes[randomIndex]
-            val imageViewCarte = ImageView(this)
             imageViewCarte.setImageResource(carteRandom)
+
             val parentContainer = findViewById<ConstraintLayout>(R.id.layout_gameplay) // Assurez-vous que l'ID correspond
 
             val layoutParams = ConstraintLayout.LayoutParams(

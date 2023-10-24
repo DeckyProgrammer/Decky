@@ -7,7 +7,9 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.support.constraint.ConstraintLayout
+import android.support.constraint.ConstraintSet
 import android.support.v7.app.AppCompatActivity
+import android.transition.TransitionManager
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
@@ -24,10 +26,10 @@ class Gameplay : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gameplay)
-        val myImage1 = findViewById<ImageView>(R.id.imageView1)
-        /* val myImage2 = findViewById<ImageView>(R.id.imageView2)
+        /* val myImage1 = findViewById<ImageView>(R.id.imageView1)
+        val myImage2 = findViewById<ImageView>(R.id.imageView2)
         val myImage3 = findViewById<ImageView>(R.id.imageView3) */
-        val imageViews = arrayListOf(myImage1)
+        val imageViews = mutableListOf<ImageView>()
         val i = intent.getIntExtra("cle_i", 2)
         var selectedImageView: ImageView? = null
 
@@ -192,7 +194,19 @@ class Gameplay : AppCompatActivity() {
                 dpToPx(181)  // Hauteur en pixels
             )
 
-            val marginLeftInDP = 150
+            // TransitionManager pour gérer l'apparition
+            /* val constraintSet = ConstraintSet()
+            constraintSet.clone(parentContainer)
+
+            // Définissez les contraintes pour placer l'ImageView au centre
+            constraintSet.centerHorizontally(imageViewCarte.id, ConstraintSet.PARENT_ID)
+            constraintSet.centerVertically(imageViewCarte.id, ConstraintSet.PARENT_ID)
+
+            // Appliquez la transition pour l'apparition en douceur
+            TransitionManager.beginDelayedTransition(parentContainer)
+            constraintSet.applyTo(parentContainer) */
+
+            /* val marginLeftInDP = 150
             val marginTopInDP = 100
 
             val density = resources.displayMetrics.density
@@ -202,7 +216,7 @@ class Gameplay : AppCompatActivity() {
             layoutParams.leftMargin = marginLeftInPixels
             layoutParams.topMargin = marginTopInPixels
 
-            imageViewCarte.layoutParams = layoutParams
+            imageViewCarte.layoutParams = layoutParams */
 
             imageViewCarte.layoutParams = imageViewLayoutParams
             imageViewCarte.scaleType = ImageView.ScaleType.FIT_XY

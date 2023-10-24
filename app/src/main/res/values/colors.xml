@@ -9,7 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <!-- <color name="bleu_fonce">#FF064789</color>
     <color name="bleu_clair">#FF009FB7</color> -->
-    <color name="bleu_fonce">#FF223843</color>
+    <!-- <color name="bleu_fonce">#FF223843</color>
     <color name="bleu_clair">#FF0EB1D2</color>
-    <color name="orange">#FFFFBF5E</color>
+    <color name="orange">#FFFFBF5E</color> -->
+    <color name="bleu_fonce">#FF0D5C63</color>
+    <color name="bleu_clair">#FFAA6373</color>
+    <color name="orange">#FFF0F2A6</color> -->
+
 </resources>

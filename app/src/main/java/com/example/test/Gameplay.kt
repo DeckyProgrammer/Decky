@@ -84,7 +84,7 @@ class Gameplay : AppCompatActivity() {
 
                             // Changez la couleur de la bordure en fonction de l'état de sélection si nécessaire
                             if (v.isSelected) {
-                                v.foreground = resources.getDrawable(R.drawable.border_orange, null)
+                                v.foreground = resources.getDrawable(R.drawable.border_bleu, null)
                             } else {
                                 v.foreground = null
                             }

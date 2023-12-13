@@ -1,9 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 import org.tensorflow:tensorflow-lite;
+import java.io.File;
 public class interpreter{
 
-    public Interpreter interpreter(@NotNull File modelFile);
+
+    File model = new File("app/src/main/assets/model.tflite"); //remplacer par le bon modèle
+    public Interpreter interpreter = new Interpreter(model);
 
     Map<String, Object> inputs = new HashMap<>();
     int input1;

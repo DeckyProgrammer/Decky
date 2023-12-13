@@ -27,7 +27,8 @@ import java.util.UUID
 
 class Gameplay : AppCompatActivity() {
     val i = 4
-    val liste = arrayOf("","","","","","","","","","","","","","","","","","","")
+    val cartesMain = arrayOf("","","","","","","","","","","","","","","","","","","")
+    val probaCarte = arrayOf()
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {

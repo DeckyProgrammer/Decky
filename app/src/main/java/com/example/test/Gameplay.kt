@@ -27,7 +27,7 @@ import java.util.UUID
 
 class Gameplay : AppCompatActivity() {
     val i = 4
-    val liste = arrayOf(5, 15, 25, 35)
+    val liste = arrayOf("","","","","","","","","","","","","","","","","","","")
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -123,7 +123,7 @@ class Gameplay : AppCompatActivity() {
         val parentLayout = findViewById<ConstraintLayout>(R.id.layout_gameplay)
         val buttonjoue = findViewById<Button>(R.id.button_play)
         buttonjoue.setOnClickListener {
-
+            val receivedData = connectToDeviceSend("24:6F:28:7B:4F:4E", selectedImageView) //remplacer selectedImageView par str position carte dans boite noire
             if (selectedImageView != null) {
 
                 parentLayout.removeView(selectedImageView)
@@ -180,9 +180,11 @@ class Gameplay : AppCompatActivity() {
         val buttonpioche = findViewById<Button>(R.id.button_draw)
         buttonpioche.setOnClickListener {
             val imageViewCarte = ImageView(this)
+            val receivedData = connectToDeviceReceive("24:6F:28:7B:4F:4E")
+            //envoyer ensuite receivedData dans l'ia
             val randomIndex = (0 until cartes.size).random()
             val carteRandom = cartes[randomIndex]
-            imageViewCarte.setImageResource(carteRandom)
+            imageViewCarte.setImageResource(carteRandom) //remplacer carte random par carte renvoyée par IA
 
             val parentContainer = findViewById<ConstraintLayout>(R.id.layout_gameplay) // Assurez-vous que l'ID correspond
 

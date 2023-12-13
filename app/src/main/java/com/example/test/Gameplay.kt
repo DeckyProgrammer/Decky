@@ -20,7 +20,7 @@ import android.widget.LinearLayout
 
 class Gameplay : AppCompatActivity() {
     val i = 4
-
+    val liste = arrayOf(5, 15, 25, 35)
     @RequiresApi(Build.VERSION_CODES.M)
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +32,6 @@ class Gameplay : AppCompatActivity() {
         val imageViews = mutableListOf<ImageView>()
         val i = intent.getIntExtra("cle_i", 2)
         var selectedImageView: ImageView? = null
-
-
         fun setupImageViewDrag(imageView: ImageView) {
             imageView.setOnTouchListener(object : View.OnTouchListener {
                 var dX = 0f
@@ -42,7 +40,7 @@ class Gameplay : AppCompatActivity() {
                 var maxY = 0f
                 //val minAllowedY = 170f
                 //val maxAllowedY = 0.85f
-
+            
 
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     val screenWidth = resources.displayMetrics.widthPixels
@@ -125,7 +123,6 @@ class Gameplay : AppCompatActivity() {
                 // Aucune image n'est sélectionnée
             }
         }
-
         val cartes: ArrayList<Int> = when (i) {
             0 -> arrayListOf(R.drawable.c1, R.drawable.c2, R.drawable.c3, R.drawable.c4, R.drawable.c5,
                 R.drawable.c6, R.drawable.c7, R.drawable.c8, R.drawable.c9, R.drawable.c10,

@@ -1,6 +1,9 @@
 package com.example.test
 
 import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
 import android.content.Intent
 import android.content.res.Resources
 import android.os.Build
@@ -17,6 +20,10 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import java.io.IOException
+import java.io.InputStream
+import java.io.OutputStream
+import java.util.UUID
 
 class Gameplay : AppCompatActivity() {
     val i = 4
@@ -118,6 +125,7 @@ class Gameplay : AppCompatActivity() {
         buttonjoue.setOnClickListener {
 
             if (selectedImageView != null) {
+
                 parentLayout.removeView(selectedImageView)
             } else {
                 // Aucune image n'est sélectionnée
@@ -227,6 +235,118 @@ class Gameplay : AppCompatActivity() {
     private fun dpToPx(dp: Int): Int {
         val scale = resources.displayMetrics.density
         return (dp * scale + 0.5f).toInt()
+    }
+
+    private fun connectToDeviceSend(deviceAddress : String, cardToSend : String) : String{
+        val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+
+        // Vérifier si l'appareil supporte le Bluetooth
+        if (bluetoothAdapter == null) {
+            return "Bluetooth non supporté sur cet appareil"
+        }
+
+        // Vérifier si le Bluetooth est activé, sinon demander à l'utilisateur de l'activer
+        if (!bluetoothAdapter.isEnabled) {
+            return "Veuillez activer le Bluetooth"
+        }
+
+        // Rechercher le périphérique Bluetooth avec l'adresse spécifiée
+        val remoteDevice: BluetoothDevice? = bluetoothAdapter.getRemoteDevice(deviceAddress)
+
+        // Vérifier si le périphérique existe
+        if (remoteDevice == null) {
+            return "Périphérique Bluetooth introuvable"
+        }
+
+        val uuid: UUID = UUID.fromString("BA37C98E-943B-11EE-B9D1-0242AC120002") // UUID  pour le service SPP (Serial Port Profile)
+        var socket: BluetoothSocket? = null
+        var outputStream: OutputStream? = null
+
+        try {
+            // Créer un socket Bluetooth sécurisé
+            socket = remoteDevice.createRfcommSocketToServiceRecord(uuid)
+
+            // Connecter le socket
+            socket.connect()
+
+            // Obtenir les flux de sortie du socket
+            outputStream = socket.outputStream
+
+            // Envoyer des données au serveur Bluetooth
+            outputStream.write(cardToSend.toByteArray())
+
+            return "1"
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return "Erreur lors de la connexion ou de l'échange de données"
+        } finally {
+            try {
+                // Fermer les flux et le socket après avoir terminé
+                outputStream?.close()
+                socket?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
+    }
+
+
+    private fun connectToDeviceReceive(deviceAddress: String): String {
+        val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+
+        // Vérifier si l'appareil supporte le Bluetooth
+        if (bluetoothAdapter == null) {
+            return "Bluetooth non supporté sur cet appareil"
+        }
+
+        // Vérifier si le Bluetooth est activé, sinon demander à l'utilisateur de l'activer
+        if (!bluetoothAdapter.isEnabled) {
+            return "Veuillez activer le Bluetooth"
+        }
+
+        // Rechercher le périphérique Bluetooth avec l'adresse spécifiée
+        val remoteDevice: BluetoothDevice? = bluetoothAdapter.getRemoteDevice(deviceAddress)
+
+        // Vérifier si le périphérique existe
+        if (remoteDevice == null) {
+            return "Périphérique Bluetooth introuvable"
+        }
+
+        val uuid: UUID = UUID.fromString("BA37C98E-943B-11EE-B9D1-0242AC120002") // UUID  pour le service SPP (Serial Port Profile)
+        var socket: BluetoothSocket? = null
+        var inputStream: InputStream? = null
+
+        try {
+            // Créer un socket Bluetooth sécurisé
+            socket = remoteDevice.createRfcommSocketToServiceRecord(uuid)
+
+            // Connecter le socket
+            socket.connect()
+
+            // Obtenir les flux d'entrée du socket
+            inputStream = socket.inputStream
+
+
+            // Lire les données provenant du serveur Bluetooth
+            val buffer = ByteArray(1024)
+            val bytesRead = inputStream.read(buffer)
+            val receivedMessage = String(buffer, 0, bytesRead)
+
+            // Retourner les données reçues du serveur Bluetooth
+            return receivedMessage
+        } catch (e: IOException) {
+            e.printStackTrace()
+            return "Erreur lors de la connexion ou de l'échange de données"
+        } finally {
+            try {
+                // Fermer les flux et le socket après avoir terminé
+                inputStream?.close()
+                socket?.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 }
 /* val imageViews = arrayOf(myImage1, myImage2, myImage3)

@@ -131,6 +131,8 @@ class Gameplay : AppCompatActivity() {
                 }
             }
             val receivedData = connectToDeviceJoue("3C:71:BF:6F:30:94", "j_$positionCardToSend") //remplacer selectedImageView par str position carte dans boite noire
+            //24:6F:28:7B:4F:4E adresse MAC mien
+            //3C:71:BF:6F:30:96 adresse MAC electronique
             cartesMain[positionCardToSend]=""
             if (selectedImageView != null) {
                 parentLayout.removeView(selectedImageView)
@@ -319,7 +321,7 @@ class Gameplay : AppCompatActivity() {
             return "Périphérique Bluetooth introuvable"
         }
 
-        val uuid: UUID = UUID.fromString("BA37C98E-943B-11EE-B9D1-0242AC120002") // UUID  pour le service SPP (Serial Port Profile)
+        val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID  pour le service SPP (Serial Port Profile)
         var socket: BluetoothSocket? = null
         var outputStream: OutputStream? = null
 

@@ -22,6 +22,9 @@ import java.io.OutputStream
 import java.util.UUID
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.util.Log
+import android.graphics.Color
+import android.util.LogPrinter
 
 class Gameplay : AppCompatActivity() {
     val i = 4
@@ -124,14 +127,14 @@ class Gameplay : AppCompatActivity() {
         val buttonjoue = findViewById<Button>(R.id.button_play)
         buttonjoue.setOnClickListener {
 
-            var positionCardToSend = -1
+            var positionCardToSend = 1
             for (j in 0..<nbEmplacements){
                 if(cartesMain[j] == selectedImageView?.tag?.toString() ){
                     positionCardToSend = j
                 }
             }
-            val receivedData = connectToDeviceJoue("3C:71:BF:6F:30:94", "j_$positionCardToSend") //remplacer selectedImageView par str position carte dans boite noire
-            cartesMain[positionCardToSend]=""
+            val receivedData = connectToDeviceJoue("24:6F:28:5F:75:1E", "j_$positionCardToSend") //remplacer selectedImageView par str position carte dans boite noire
+            cartesMain[positionCardToSend]="" //Elec: 3C:71:BF:6F:30:96       24:6F:28:7B:4F:4E  New: 24:6F:28:5F:75:1E
             if (selectedImageView != null) {
                 parentLayout.removeView(selectedImageView)
             } else {
@@ -190,59 +193,89 @@ class Gameplay : AppCompatActivity() {
             val imageViewCarte = ImageView(this)
             var carte =""
             var indexCarte = 0
-            var availablePosition = -1
+            var availablePosition = 1
             for (j in 0..<nbEmplacements){
                 if(cartesMain[j].isEmpty()){
                     availablePosition = j
                 }
             }
-            //val receivedData = connectToDevicePioche("24:6F:28:7B:4F:4E","SEND_DATA")
+            val receivedData = connectToDevicePioche("24:6F:28:5F:75:1E","p_$availablePosition")
+            print(receivedData)
+            System.out.println(receivedData)
+            Log.d("RECEIVED",receivedData)
+            Log.d("RECEIVED",receivedData.length.toString())
+            val height_ = 80
+            val width_ = 60
+            var imageFLOAT = Array(1) {Array(height_) { Array(width_) { FloatArray(3) { 0f } } } }
+            var imageRgb_ = pictureFromString(receivedData)
+            // Inverser verticalement (selon la largeur)
+            for (y in 0 until height_) {
+                for (x in 0 until width_ / 2) {
+                    val temp = imageRgb_[y][x].clone()
+                    imageRgb_[y][x] = imageRgb_[y][width_ - 1 - x]
+                    imageRgb_[y][width_ - 1 - x] = temp
+                }
+            }
+            var myBitmap: Bitmap = Bitmap.createBitmap(width_, height_, Bitmap.Config.ARGB_8888)
+
+            for (x in 0 until width_){
+                for (y in 0 until height_){
+                    myBitmap.setPixel(x, y, Color.rgb(imageRgb_[y][x][0], imageRgb_[y][x][1], imageRgb_[y][x][2]));
+                    imageFLOAT[0][y][x][0] = imageRgb_[y][x][0].toFloat()
+                    imageFLOAT[0][y][x][1] = imageRgb_[y][x][1].toFloat()
+                    imageFLOAT[0][y][x][2] = imageRgb_[y][x][2].toFloat()
+                }
+            }
+
             val resourceId = R.drawable.testia // R.drawable.testia fait référence à votre image dans le dossier drawable
 
-            val bitmap: Bitmap = BitmapFactory.decodeResource(applicationContext.resources, resourceId)
+            //val bitmap: Bitmap = BitmapFactory.decodeResource(applicationContext.resources, resourceId)
             var max = 0
-            var probaCarte = arrayOfNulls<Float>(53).toMutableList()
-            val interpreter = interpreter()
-            //interpreter.inputs["input_1"]=receivedData
-            interpreter.inputs["input_1"]=bitmap
+            //var probaCarte = FloatArray(53) {0f}
+            val interpreter = interpreter(this)
+            interpreter.inputs["input_1"]=imageFLOAT
+            //interpreter.inputs["input_1"]=bitmap
             interpreter.launch()
-            probaCarte = interpreter.outputs["output_1"] as MutableList<Float?>
-
+            var probaCarte = interpreter.outputs["output_1"]  as Array<FloatArray>
+            Log.d("IA", probaCarte.toString())
             //envoyer image dans IA
             //récupérer  les probas
-
-            for  (j in 0..53){
-                if(probaCarte[max]!! < probaCarte[j]!!){
+            for  (j in 0..52){
+                if(probaCarte[0][max]!! < probaCarte[0][j]!!){
                     max = j
                 }
             }
 
-
+            Log.d("IA", probaCarte[0][max].toString())
+            Log.d("IA", max.toString())
             //envoyer ensuite receivedData dans l'ia
-            //carte = getCardName(ordreCartes,receivedData)
 
             cartesMain[availablePosition] = ordreCartes[max]
+            carte = ordreCartes[max]
+            Log.d("IA", ordreCartes[max])
 
             if(carte.contains("c")== true){
-                indexCarte = carte.substringAfter("c").toInt()
+                indexCarte = carte.substringAfter("c").toInt() -1
             }
             else if(carte.contains("d")== true) {
-                indexCarte = carte.substringAfter("d").toInt() + 13
+                indexCarte = carte.substringAfter("d").toInt() + 13 -1
             }
             else if(carte.contains("h")== true) {
-                indexCarte = carte.substringAfter("h").toInt() + 26
+                indexCarte = carte.substringAfter("h").toInt() + 26 -1
             }
             else if(carte.contains("s")== true) {
-                indexCarte = carte.substringAfter("s").toInt() + 39
+                indexCarte = carte.substringAfter("s").toInt() + 39 -1
             }
             else if(carte.contains("j")== true) {
-                indexCarte = carte.substringAfter("j").toInt() + 52
+                indexCarte = carte.substringAfter("j").toInt() + 52 -1
             }
-            /*val randomIndex = (0 until cartes.size).random()
-            val carteRandom = cartes[randomIndex]
-            imageViewCarte.setImageResource(carteRandom) */
+            Log.d("IA", indexCarte.toString())
+            val randomIndex = (0 until cartes.size).random()
+            val carteRandom = cartes[indexCarte]
+            //imageViewCarte.setImageResource(carteRandom)
+            imageViewCarte.setImageBitmap(myBitmap)
             //remplacer carte random par carte renvoyée par IA
-            imageViewCarte.setImageResource(cartes[indexCarte])
+            //imageViewCarte.setImageResource(cartes[indexCarte])
             imageViewCarte.tag = imageViewCarte.drawable
 
             val parentContainer = findViewById<ConstraintLayout>(R.id.layout_gameplay) // Assurez-vous que l'ID correspond
@@ -319,7 +352,7 @@ class Gameplay : AppCompatActivity() {
             return "Périphérique Bluetooth introuvable"
         }
 
-        val uuid: UUID = UUID.fromString("BA37C98E-943B-11EE-B9D1-0242AC120002") // UUID  pour le service SPP (Serial Port Profile)
+        val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID  pour le service SPP (Serial Port Profile)
         var socket: BluetoothSocket? = null
         var outputStream: OutputStream? = null
 
@@ -374,7 +407,7 @@ class Gameplay : AppCompatActivity() {
             return "Périphérique Bluetooth introuvable"
         }
 
-        val uuid: UUID = UUID.fromString("BA37C98E-943B-11EE-B9D1-0242AC120002") // UUID  pour le service SPP (Serial Port Profile)
+        val uuid: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB") // UUID  pour le service SPP (Serial Port Profile)
         var socket: BluetoothSocket? = null
         var outputStream: OutputStream? = null
         var inputStream: InputStream? = null
@@ -393,28 +426,30 @@ class Gameplay : AppCompatActivity() {
             // Envoyer des données au serveur Bluetooth
             outputStream.write(cardToPioche.toByteArray())
 
-            val TIMEOUT = 5000 // Timeout en millisecondes
+            val TIMEOUT = 6000 // Timeout en millisecondes
             val startTime = System.currentTimeMillis()
+
+            val buffer = ByteArray(1024)
+            var bytesRead  = 0
+            var receivedMessage = ""
 
             // Attendre la réponse
             while (System.currentTimeMillis() - startTime < TIMEOUT) {
                 if (inputStream.available() > 0) {
-                    val buffer = ByteArray(1024)
-                    val bytesRead = inputStream.read(buffer)
-                    val receivedMessage = String(buffer, 0, bytesRead)
-
-                    // Fermer les flux et le socket après avoir reçu la réponse
-                    outputStream?.close()
-                    inputStream?.close()
-                    socket?.close()
-
-                    // Retourner les données reçues du serveur Bluetooth
-                    return receivedMessage
+                    bytesRead = inputStream.read(buffer)
+                    receivedMessage += String(buffer, 0, bytesRead)
                 }
             }
+            // Fermer les flux et le socket après avoir reçu la réponse
+            outputStream?.close()
+            inputStream?.close()
+            socket?.close()
+
+            // Retourner les données reçues du serveur Bluetooth
+            return receivedMessage
 
             // Timeout atteint sans réponse
-            return "Aucune réponse reçue après le délai imparti"
+            //return "Aucune réponse reçue après le délai imparti"
         } catch (e: IOException) {
             e.printStackTrace()
             return "Erreur lors de la connexion ou de l'échange de données"
@@ -435,7 +470,7 @@ class Gameplay : AppCompatActivity() {
         var probaCarte = arrayOfNulls<Float>(53).toMutableList()
         //convertir str en image
         var picture = pictureFromString(receivedData)
-        val interpreter = interpreter()
+        val interpreter = interpreter(this)
         interpreter.inputs["input_1"]=picture
         interpreter.launch()
         probaCarte = interpreter.outputs["output_1"] as MutableList<Float?>
@@ -456,58 +491,19 @@ class Gameplay : AppCompatActivity() {
         val height = 80
         val width = 60
         val imageRgb = Array(height) { Array(width) { IntArray(3) { 0 } } }
-        val pictureData = receivedData.trimIndent()
+        var point = 0
+        for (i in 0 until height) {
 
-        var index = 0
-        var reading = true
-
-        while (reading && index < pictureData.lines().size) {
-            val start = pictureData.lines()[index]
-            index++
-
-            if (start.substring(2) == "start") {
-                val number = getNumber(start) + "_loading_image"
-                var reading2 = true
-
-                while (reading2 && index < pictureData.lines().size) {
-                    for (i in 0 until width) {
-                        val ligne = pictureData.lines()[index]
-                        index++
-                        var point = 0
-                        var test = 0
-
-                        for (j in 0 until height) {
-                            test++
-                            val (color, newPoint) = getRGB(ligne, point)
-                            point = newPoint
-                            imageRgb[j][i] = multipleList(separateRGB(color))
-                        }
-                    }
-
-                    // Assume Image.fromArray est une fonction appropriée pour convertir imageRgb en image
-                    // Im.save est supposé enregistrer l'image
-                    val imageName = "image_${getNumber(start)}.png"
-                    // im.save(imageName, "PNG")
-
-                    reading2 = false
-                }
-            }
-
-            if (start.isEmpty()) {
-                reading = false
+            for (j in 0 until width) {
+                val (color, newPoint) = getRGB(receivedData, point)
+                Log.d("REC", color)
+                point = newPoint
+                imageRgb[i][j] = multipleList(separateRGB(color))
             }
         }
+
         return imageRgb
     }
-
-    private fun getNumber(stuff : String): String {
-        var j =0
-        while (stuff[j]!= '_'){
-            j++
-        }
-        return stuff.substring(0,j)
-    }
-
     fun getRGB(stuff: String, pointeur: Int): Pair<String, Int> {
         var i = pointeur
         while (stuff[i] != ';') {
